@@ -5,7 +5,7 @@ import algorithm from "../assets/library/Algorithm";
 import UMLS from "../assets/components/UML";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import ScriptLoader from "next/script";
+
 export default function Home() {
   const [text_data, set_text_data] = useState("");
   useEffect(() => {});
@@ -27,11 +27,6 @@ export default function Home() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
           rel="stylesheet"
         />
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
-          type="text/javascript"
-          charSet="utf-8"
-        ></script>
       </Head>
       <header>
         <h1>UML Generator</h1>
