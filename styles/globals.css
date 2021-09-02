@@ -14,7 +14,11 @@ body {
   background: black;
   color: white;
 }
-#text::-webkit-scrollbar {
+#editor {
+  border-radius: 10px;
+  overflow: hidden;
+}
+#editor::-webkit-scrollbar {
   display: none;
 }
 a {

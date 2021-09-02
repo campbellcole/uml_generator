@@ -3,9 +3,14 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import algorithm from "../assets/library/Algorithm";
 import UMLS from "../assets/components/UML";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 export default function Home() {
   const [text_data, set_text_data] = useState("");
+  useEffect(() => {});
+  const Editor = dynamic(() => import("../assets/components/Editor.jsx"), {
+    ssr: false,
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -15,6 +20,12 @@ export default function Home() {
           content="Convert your C++ code into UML Diagrams!"
         />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <header>
         <h1>UML Generator</h1>
@@ -22,43 +33,20 @@ export default function Home() {
       <main className={styles.main}>
         {text_data ? <UMLS data={text_data} /> : null}
         <h2>Paste your header code here:</h2>
-        <textarea
-          id="text"
-          style={{
-            borderRadius: "20px 0px 0px 20px",
-            overflow: "auto",
-            color: " #FFFFFF",
-            background: "#232323",
-            msOverflowStyle: "none",
-            scrollbarWidth: "none",
-            height: "15vw",
-            width: "15vw",
-          }}
-        />
+        <div id="editor" style={{ height: "20vw", width: "20vw" }}></div>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
+          type="text/javascript"
+          charSet="utf-8"
+        ></script>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
+          type="text/javascript"
+          charSet="utf-8"
+        ></script>
+
         <p>Make sure it compiles first!</p>
-        <button
-          id="generate"
-          style={{
-            borderRadius: "50px",
-            border: "1px solid black",
-            margin: "10px",
-            fontSize: "1.2rem",
-            userSelect: "none",
-            cursor: "pointer",
-          }}
-          onClick={async () => {
-            const text = document.getElementById("text");
-            let formatted_text = await fetch("/api/format", {
-              method: "POST",
-              body: text.value,
-            }).then((response) => {
-              return response.json();
-            });
-            set_text_data(algorithm(formatted_text.data));
-          }}
-        >
-          Generate
-        </button>
+        <Editor set_text_data={set_text_data} />
       </main>
     </div>
   );

@@ -1,9 +1,10 @@
 const UMLS = ({ data }) => {
   let UML_list = [];
-  Object.values(data).forEach((types, j) => {
-    Object.entries(types).forEach((obj, i) => {
+  Object.entries(data).forEach((types, j) => {
+    Object.entries(types[1]).forEach((obj, i) => {
       UML_list.push(
         <UML
+          type={types[0]}
           key={"UML_" + i + " " + j}
           object={{ name: obj[0], property: obj[1] }}
         />
@@ -13,7 +14,7 @@ const UMLS = ({ data }) => {
   return <div style={{ display: "flex" }}>{UML_list}</div>;
 };
 
-const UML = ({ object }) => {
+const UML = ({ object, type }) => {
   let li_methods = [];
   let li_field_vars = [];
   Object.entries(object.property).forEach(
@@ -53,18 +54,40 @@ const UML = ({ object }) => {
         flexDirection: "column",
         overflow: "hidden",
         borderRadius: "15px",
+        fontFamily: "Montserrat",
+        color: "black",
       }}
     >
       <div
         style={{
           display: "flex",
           alignSelf: "flex-start",
+          alignItems: "center",
           justifyContent: "center",
           borderBottom: "1px solid black",
           width: "100%",
           padding: "0rem 1rem",
+          position: "relative",
         }}
       >
+        <h2
+          style={{
+            fontSize: "1rem",
+            margin: "0px",
+            padding: "0.3rem 0rem",
+            borderRadius: "100%",
+            border: "solid 1px black",
+            width: "1.3rem",
+            height: "1.3rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            left: "1rem",
+          }}
+        >
+          {type[0]}
+        </h2>
         <h1 style={{ fontSize: "1rem", margin: "0px", padding: "0.3rem 1rem" }}>
           {object.name}
         </h1>
