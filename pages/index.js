@@ -28,11 +28,6 @@ export default function Home() {
           rel="stylesheet"
         />
         <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
-          type="text/javascript"
-          charSet="utf-8"
-        ></script>
-        <script
           src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
           type="text/javascript"
           charSet="utf-8"

@@ -4,10 +4,23 @@ const Editor = ({ set_text_data }) => {
   var editor;
   var beautify;
   useEffect(() => {
-    editor = ace.edit("editor");
-    beautify = js_beautify;
-    editor.setTheme("ace/theme/monokai");
-    editor.session.setMode("ace/mode/c_cpp");
+    const script_beautify = document.createElement("script");
+    const script_ace = document.createElement("script");
+    document.body.appendChild(script_beautify);
+    document.body.appendChild(script_ace);
+    script_beautify.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js";
+    script_ace.src = "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js";
+    script_beautify.async = false;
+    script_ace.async = false;
+    script_ace.onload = () => {
+      editor = window.ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/c_cpp");
+    };
+    script_beautify.onload = () => {
+      beautify = window.js_beautify;
+    };
   });
   return (
     <>
