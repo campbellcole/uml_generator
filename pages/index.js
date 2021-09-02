@@ -5,7 +5,7 @@ import algorithm from "../assets/library/Algorithm";
 import UMLS from "../assets/components/UML";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-
+import ScriptLoader from "next/script";
 export default function Home() {
   const [text_data, set_text_data] = useState("");
   useEffect(() => {});
@@ -45,7 +45,6 @@ export default function Home() {
         {text_data ? <UMLS data={text_data} /> : null}
         <h2>Paste your header code here:</h2>
         <div id="editor" style={{ height: "20vw", width: "20vw" }}></div>
-
         <p>Make sure it compiles first!</p>
         <Editor set_text_data={set_text_data} />
       </main>
