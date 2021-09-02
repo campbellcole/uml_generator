@@ -27,14 +27,6 @@ export default function Home() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
           rel="stylesheet"
         />
-      </Head>
-      <header>
-        <h1>UML Generator</h1>
-      </header>
-      <main className={styles.main}>
-        {text_data ? <UMLS data={text_data} /> : null}
-        <h2>Paste your header code here:</h2>
-        <div id="editor" style={{ height: "20vw", width: "20vw" }}></div>
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
           type="text/javascript"
@@ -45,6 +37,14 @@ export default function Home() {
           type="text/javascript"
           charSet="utf-8"
         ></script>
+      </Head>
+      <header>
+        <h1>UML Generator</h1>
+      </header>
+      <main className={styles.main}>
+        {text_data ? <UMLS data={text_data} /> : null}
+        <h2>Paste your header code here:</h2>
+        <div id="editor" style={{ height: "20vw", width: "20vw" }}></div>
 
         <p>Make sure it compiles first!</p>
         <Editor set_text_data={set_text_data} />
