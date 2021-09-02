@@ -125,7 +125,7 @@ const algorithm = (text) => {
                 protection_status,
                 is_function,
               ];
-              console.log(text.substring(i, next_i));
+
               statement = "";
             }
           }
@@ -152,7 +152,6 @@ const algorithm = (text) => {
     current_scope[2] += 1 * (prev[0] === "{") - 1 * (prev[0] === "}");
     i = next_i + 1;
   }
-  console.log(types.class);
   return types;
 };
 export default algorithm;

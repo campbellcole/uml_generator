@@ -5,6 +5,11 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+#generate {
+  background: white;
+  color: black;
+  transition: background 300ms ease;
+}
 #generate:hover {
   background: black;
   color: white;

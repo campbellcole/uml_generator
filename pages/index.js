@@ -21,7 +21,7 @@ export default function Home() {
       </header>
       <main className={styles.main}>
         {text_data ? <UMLS data={text_data} /> : null}
-        <h2>Paste your code here:</h2>
+        <h2>Paste your header code here:</h2>
         <textarea
           id="text"
           style={{
