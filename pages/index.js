@@ -5,7 +5,7 @@ import algorithm from "../assets/library/Algorithm";
 import UMLS from "../assets/components/UML";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import Script from "next/script";
+
 export default function Home() {
   const [text_data, set_text_data] = useState("");
   useEffect(() => {});
@@ -35,16 +35,16 @@ export default function Home() {
         {text_data ? <UMLS data={text_data} /> : null}
         <h2>Paste your header code here:</h2>
         <div id="editor" style={{ height: "20vw", width: "20vw" }}></div>
-        <Script
+        <script
           src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"
           type="text/javascript"
           charSet="utf-8"
-        ></Script>
-        <Script
+        ></script>
+        <script
           src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
           type="text/javascript"
           charSet="utf-8"
-        ></Script>
+        ></script>
 
         <p>Make sure it compiles first!</p>
         <Editor set_text_data={set_text_data} />
