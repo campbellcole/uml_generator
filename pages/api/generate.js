@@ -19,10 +19,7 @@ export default async function handler(req, res) {
         plantuml.useNailgun();
         init = true;
     }
-    const filename = v4() + ".hpp";
-    const tempPath = `./${filename}`;
-    fs.writeFileSync(tempPath, req.body.headerData);
-    const python = spawn("hpp2plantuml", ["-i", tempPath]);
+    const python = spawn("python", ["parse.py", req.body.headerData]);
     let umlOut = "";
     for await (const chunk of python.stdout) {
         umlOut += chunk;
@@ -35,6 +32,8 @@ export default async function handler(req, res) {
         python.on("close", resolve);
     });
     if (exitCode !== 0) {
+        console.log(umlOut);
+        console.log(error);
         return res.send("Failed...");
     }
     const encoded = plantuml.encode(umlOut);
@@ -42,6 +41,5 @@ export default async function handler(req, res) {
     for await (const chunk of encoded.out) {
         encodedStr += chunk;
     }
-    fs.rmSync(tempPath);
     res.send(`<script> window.location.href = "http://www.plantuml.com/plantuml/png/${encodedStr}";</script>`);
 }
