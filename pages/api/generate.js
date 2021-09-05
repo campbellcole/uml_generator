@@ -34,6 +34,9 @@ export default async function handler(req, res) {
     const exitCode = await new Promise((resolve) => {
         python.on("close", resolve);
     });
+    if (exitCode !== 0) {
+        return res.send("Failed...");
+    }
     const encoded = plantuml.encode(umlOut);
     let encodedStr = "";
     for await (const chunk of encoded.out) {
