@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         init = true;
     }
     const filename = v4() + ".hpp";
-    const tempPath = `./temp/${filename}`;
+    const tempPath = `./${filename}`;
     fs.writeFileSync(tempPath, req.body.headerData);
     const python = spawn("hpp2plantuml", ["-i", tempPath]);
     let umlOut = "";
