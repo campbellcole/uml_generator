@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 import algorithm from "../library/Algorithm";
-const Editor = ({ set_text_data }) => {
+
+const Editor = ({set_text_data}) => {
   var editor;
   var beautify;
   useEffect(() => {
@@ -24,24 +25,29 @@ const Editor = ({ set_text_data }) => {
   });
   return (
     <>
-      <button
-        id="generate"
-        style={{
-          borderRadius: "50px",
-          border: "1px solid black",
-          margin: "10px",
-          fontSize: "1.2rem",
-          userSelect: "none",
-          cursor: "pointer",
-        }}
-        onClick={async () => {
-          let formatted_text = beautify(editor.getValue());
-          editor.session.setValue(formatted_text);
-          set_text_data(algorithm(formatted_text));
-        }}
-      >
-        Generate
-      </button>
+      <form action="/api/generate" method="POST" id="generateUML">
+        <input type="hidden" name="headerData" id="headerData" />
+        <button
+          id="generate"
+          style={{
+            borderRadius: "50px",
+            border: "1px solid black",
+            margin: "10px",
+            fontSize: "1.2rem",
+            userSelect: "none",
+            cursor: "pointer",
+          }}
+          onClick={async () => {
+            let formatted_text = beautify(editor.getValue());
+            editor.session.setValue(formatted_text);
+            document.getElementById("headerData").value = formatted_text;
+            document.getElementById("generateUML").submit();
+            //set_text_data(algorithm(formatted_text));
+          }}
+        >
+          Generate
+        </button>
+      </form>
     </>
   );
 };
